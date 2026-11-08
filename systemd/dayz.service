@@ -1,0 +1,19 @@
+[Unit]
+Description=DayZ Dedicated Server
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=dayz
+Group=dayz
+WorkingDirectory=/home/dayz/server-test
+
+ExecStart=-/home/dayz/server-test/DayZServer -config=serverDZ.cfg -port=2302 -profiles=profiles -dologs -adminlog -netlog -freezecheck "-mod=1559212036;@DabsFramework;@DayZ-Expansion-Core;@DayZ-Expansion-AI;1564026768;"
+
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=120
+
+[Install]
+WantedBy=multi-user.target

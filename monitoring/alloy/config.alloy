@@ -1,0 +1,70 @@
+logging {
+  level = "info"
+}
+
+loki.write "dayz_loki" {
+  endpoint {
+    url = "http://192.0.2.20:3100/loki/api/v1/push"
+  }
+}
+
+local.file_match "dayz_rpt" {
+  path_targets = [
+    {
+      "__path__" = "/home/dayz/server-test/profiles/*.RPT",
+      "server"   = "dayz",
+      "log_type" = "rpt",
+    },
+  ]
+  sync_period = "10s"
+}
+
+loki.source.file "dayz_rpt" {
+  targets       = local.file_match.dayz_rpt.targets
+  forward_to    = [loki.write.dayz_loki.receiver]
+  tail_from_end = true
+}
+
+local.file_match "dayz_script" {
+  path_targets = [
+    {
+      "__path__" = "/home/dayz/server-test/profiles/script_*.log",
+      "server"   = "dayz",
+      "log_type" = "script",
+    },
+  ]
+  sync_period = "10s"
+}
+
+loki.source.file "dayz_script" {
+  targets       = local.file_match.dayz_script.targets
+  forward_to    = [loki.write.dayz_loki.receiver]
+  tail_from_end = true
+}
+
+local.file_match "dayz_error" {
+  path_targets = [
+    {
+      "__path__" = "/home/dayz/server-test/profiles/error_*.log",
+      "server"   = "dayz",
+      "log_type" = "error",
+    },
+  ]
+  sync_period = "10s"
+}
+
+loki.source.file "dayz_error" {
+  targets       = local.file_match.dayz_error.targets
+  forward_to    = [loki.write.dayz_loki.receiver]
+  tail_from_end = true
+}
+
+loki.source.journal "dayz_journal" {
+  matches    = "_SYSTEMD_UNIT=dayz.service"
+  max_age    = "1h"
+  labels     = {
+    server   = "dayz",
+    log_type = "journal",
+  }
+  forward_to = [loki.write.dayz_loki.receiver]
+}

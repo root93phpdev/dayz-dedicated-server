@@ -113,6 +113,7 @@ Grafana provides centralized log exploration and filtering by log type.
 ## Grafana Dashboards
 
 The monitoring dashboard provides a unified view of infrastructure health and DayZ server activity.
+![DayZ Server Monitoring Dashboard](docs/screenshots/dayz-dashboard.png)
 
 It includes:
 

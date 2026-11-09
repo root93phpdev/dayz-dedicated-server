@@ -8,6 +8,7 @@ This repository documents a practical DevOps lab focused on Linux administration
 
 - [DayZ Dedicated Server Installation Guide](docs/installation/dayz-server-installation.md) — complete installation and configuration guide, including SteamCMD, Workshop mods, server configuration, and systemd.
 
+- [Troubleshooting Guide](docs/troubleshooting/troubleshooting.md) — diagnostics and solutions for common DayZ server, SteamCMD, systemd, and mod issues.
 
 ## Project Overview
 

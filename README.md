@@ -4,6 +4,11 @@ A self-hosted DayZ Dedicated Server infrastructure deployed on Ubuntu Linux. The
 
 This repository documents a practical DevOps lab focused on Linux administration, service management, monitoring, logging, and infrastructure troubleshooting.
 
+## Documentation
+
+- [DayZ Dedicated Server Installation Guide](docs/installation/dayz-server-installation.md) — complete installation and configuration guide, including SteamCMD, Workshop mods, server configuration, and systemd.
+
+
 ## Project Overview
 
 The infrastructure consists of two virtual machines:
